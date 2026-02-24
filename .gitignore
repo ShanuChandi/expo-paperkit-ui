@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+bun.lock
+
+# Build output
+build/
+dist/
+lib/
+
+# macOS
+.DS_Store
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# TypeScript
+*.tsbuildinfo
+
+# Local env
+.env
+.env*.local
+
+# Logs
+*.log

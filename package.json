@@ -1,0 +1,38 @@
+{
+  "name": "expo-paperkit-ui",
+  "version": "1.3.1",
+  "description": "Expo module for Apple PaperKit integration with React Native",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "sideEffects": false,
+  "keywords": [
+    "expo",
+    "expo-module",
+    "react-native",
+    "paperkit",
+    "markup",
+    "drawing",
+    "canvas",
+    "ios",
+    "expo-paperkit-ui",
+    "apple-paperkit"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "src",
+    "ios",
+    "expo-module.config.json",
+    "index.ts"
+  ],
+  "expo": {
+    "platforms": [
+      "apple"
+    ]
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
