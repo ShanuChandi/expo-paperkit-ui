@@ -2,7 +2,7 @@
 
 An Expo module that wraps Apple's **PaperKit** framework (iOS 26+) for React Native. Provides a full-featured drawing/markup canvas with native Apple Pencil support, shape insertion, text boxes, images, background patterns, and more.
 
-> **⚠️ iOS 26+ only.** PaperKit is a new Apple framework introduced at WWDC 2025. This module requires iOS 26.0 or later and an Expo development build — it does **not** work in Expo Go.
+> **Warning: iOS 26+ only.** PaperKit is a new Apple framework introduced at WWDC 2025. This module requires iOS 26.0 or later and an Expo development build. It does **not** work in Expo Go.
 
 ---
 
@@ -43,7 +43,10 @@ export default function App() {
         isRulerActive={false}
         showsScrollIndicators={false}
       />
-      <Button title="Toggle Tools" onPress={() => ref.current?.toggleToolPicker()} />
+      <Button
+        title="Toggle Tools"
+        onPress={() => ref.current?.toggleToolPicker()}
+      />
     </View>
   );
 }
@@ -53,25 +56,25 @@ export default function App() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `style` | `ViewStyle` | — | Standard React Native view style |
-| `isEditable` | `boolean` | `true` | Whether the canvas can be edited |
-| `isRulerActive` | `boolean` | `false` | Show the native ruler tool |
-| `showsScrollIndicators` | `boolean` | `true` | Show scroll indicators on the canvas |
+| Prop                     | Type        | Default | Description                          |
+| ------------------------ | ----------- | ------- | ------------------------------------ |
+| `style`                  | `ViewStyle` | -       | Standard React Native view style     |
+| `isEditable`             | `boolean`   | `true`  | Whether the canvas can be edited     |
+| `isRulerActive`          | `boolean`   | `false` | Show the native ruler tool           |
+| `showsScrollIndicators`  | `boolean`   | `true`  | Show scroll indicators on the canvas |
 
 ---
 
 ## Events
 
-| Event | Payload | Description |
-|---|---|---|
-| `onDrawStart` | `{ data: string }` | User began drawing |
-| `onDrawEnd` | `{ data: string }` | User finished drawing |
-| `onDrawChange` | `{ data: string }` | Drawing content changed |
-| `onCanUndoChanged` | `{ canUndo: boolean }` | Undo availability changed |
-| `onCanRedoChanged` | `{ canRedo: boolean }` | Redo availability changed |
-| `onMarkupChanged` | `{}` | Markup content changed |
+| Event              | Payload                | Description                  |
+| ------------------ | ---------------------- | ---------------------------- |
+| `onDrawStart`      | `{ data: string }`     | User began drawing           |
+| `onDrawEnd`        | `{ data: string }`     | User finished drawing        |
+| `onDrawChange`     | `{ data: string }`     | Drawing content changed      |
+| `onCanUndoChanged` | `{ canUndo: boolean }` | Undo availability changed    |
+| `onCanRedoChanged` | `{ canRedo: boolean }` | Redo availability changed    |
+| `onMarkupChanged`  | `{}`                   | Markup content changed       |
 
 ---
 
@@ -85,32 +88,32 @@ const ref = useRef<PaperKitViewRef>(null);
 
 ### Tool Picker
 
-| Method | Return | Description |
-|---|---|---|
-| `setupToolPicker()` | `void` | Show the native floating tool picker |
-| `toggleToolPicker()` | `void` | Toggle tool picker visibility |
-| `hideToolPicker()` | `void` | Hide the tool picker |
+| Method              | Return | Description                         |
+| ------------------- | ------ | ----------------------------------- |
+| `setupToolPicker()`  | `void` | Show the native floating tool picker |
+| `toggleToolPicker()` | `void` | Toggle tool picker visibility        |
+| `hideToolPicker()`   | `void` | Hide the tool picker                 |
 
 ### Undo / Redo / Clear
 
-| Method | Return | Description |
-|---|---|---|
-| `undo()` | `void` | Undo last action |
-| `redo()` | `void` | Redo last undone action |
-| `clearDrawing()` | `void` | Clear all canvas content |
-| `clearMarkup()` | `void` | Alias for `clearDrawing()` |
-| `canUndo()` | `boolean` | Check if undo is available |
-| `canRedo()` | `boolean` | Check if redo is available |
+| Method           | Return    | Description                  |
+| ---------------- | --------- | ---------------------------- |
+| `undo()`         | `void`    | Undo last action             |
+| `redo()`         | `void`    | Redo last undone action      |
+| `clearDrawing()` | `void`    | Clear all canvas content     |
+| `clearMarkup()`  | `void`    | Alias for `clearDrawing()`   |
+| `canUndo()`      | `boolean` | Check if undo is available   |
+| `canRedo()`      | `boolean` | Check if redo is available   |
 
 ### Data Persistence
 
-| Method | Return | Description |
-|---|---|---|
-| `captureDrawing()` | `string` | Capture canvas as base64 PNG image |
-| `getCanvasDataAsBase64()` | `string` | Get raw drawing data as base64 (for save/restore) |
-| `setCanvasDataFromBase64(data)` | `boolean` | Load drawing from base64 data |
+| Method                          | Return    | Description                                   |
+| ------------------------------- | --------- | --------------------------------------------- |
+| `captureDrawing()`              | `string`  | Capture canvas as base64 PNG image            |
+| `getCanvasDataAsBase64()`       | `string`  | Get raw drawing data as base64 (save/restore) |
+| `setCanvasDataFromBase64(data)` | `boolean` | Load drawing from base64 data                 |
 
-**Save & restore example:**
+**Save and restore example:**
 
 ```tsx
 // Save
@@ -124,13 +127,13 @@ if (saved) await ref.current?.setCanvasDataFromBase64(saved);
 
 ### Background Color
 
-| Method | Return | Description |
-|---|---|---|
-| `setCanvasBackgroundColor(hex)` | `void` | Set the paper surface color |
-| `getCanvasBackgroundColor()` | `string` | Get current paper color as hex |
-| `setViewBackgroundColor(hex)` | `void` | Set the area behind the canvas |
-| `getViewBackgroundColor()` | `string` | Get current view background as hex |
-| `showColorPicker()` | `void` | Open native iOS color picker for paper color |
+| Method                           | Return   | Description                                |
+| -------------------------------- | -------- | ------------------------------------------ |
+| `setCanvasBackgroundColor(hex)`  | `void`   | Set the paper surface color                |
+| `getCanvasBackgroundColor()`     | `string` | Get current paper color as hex             |
+| `setViewBackgroundColor(hex)`    | `void`   | Set the area behind the canvas             |
+| `getViewBackgroundColor()`       | `string` | Get current view background as hex         |
+| `showColorPicker()`              | `void`   | Open native iOS color picker for paper     |
 
 ```tsx
 // Blue paper on dark background
@@ -140,11 +143,11 @@ ref.current?.setViewBackgroundColor("#1a1a2e");
 
 ### Background Patterns
 
-| Method | Return | Description |
-|---|---|---|
-| `setBackgroundPattern(pattern)` | `void` | Set pattern: `"none"`, `"lines"`, `"grid"`, `"dots"` |
-| `setBackgroundLineColor(hex)` | `void` | Color of pattern lines/dots |
-| `setBackgroundSpacing(points)` | `void` | Spacing between lines/dots (default: 32) |
+| Method                          | Return | Description                                                 |
+| ------------------------------- | ------ | ----------------------------------------------------------- |
+| `setBackgroundPattern(pattern)` | `void` | Set pattern: `"none"`, `"lines"`, `"grid"`, or `"dots"`    |
+| `setBackgroundLineColor(hex)`   | `void` | Color of pattern lines/dots                                 |
+| `setBackgroundSpacing(points)`  | `void` | Spacing between lines/dots (default: 32)                    |
 
 ```tsx
 // Notebook-style ruled lines
@@ -164,8 +167,8 @@ ref.current?.setBackgroundPattern("none");
 
 ### Canvas Aspect Ratio
 
-| Method | Return | Description |
-|---|---|---|
+| Method                       | Return | Description                    |
+| ---------------------------- | ------ | ------------------------------ |
 | `setCanvasAspectRatio(ratio)` | `void` | Set canvas width/height ratio |
 
 ```tsx
@@ -182,7 +185,9 @@ Elements are added programmatically and the canvas auto-switches to **selection 
 
 ```tsx
 ref.current?.insertShape({
-  type: "rectangle",    // rectangle | roundedRectangle | ellipse | star | chatBubble | regularPolygon | arrowShape
+  type: "rectangle",
+  // Also: roundedRectangle, ellipse, star,
+  //       chatBubble, regularPolygon, arrowShape
   x: 100,
   y: 100,
   width: 200,
@@ -228,25 +233,29 @@ ref.current?.insertLine({
 // From base64
 ref.current?.insertImage({
   base64: "iVBORw0KGgo...",
-  x: 50, y: 50,
-  width: 300, height: 200,
+  x: 50,
+  y: 50,
+  width: 300,
+  height: 200,
 });
 
-// From URI
+// From file URI
 ref.current?.insertImage({
   uri: "file:///path/to/photo.jpg",
-  x: 50, y: 50,
-  width: 300, height: 200,
+  x: 50,
+  y: 50,
+  width: 300,
+  height: 200,
 });
 ```
 
-### Add Menu & Tools
+### Add Menu and Tools
 
-| Method | Return | Description |
-|---|---|---|
-| `showAddMenu()` | `void` | Open native PaperKit add menu (shapes, text, stickers) |
-| `setTouchMode(mode)` | `void` | Switch between `"drawing"` and `"selection"` |
-| `setZoomRange(min, max)` | `void` | Set zoom limits (e.g. `0.5, 5`) |
+| Method                  | Return | Description                                            |
+| ----------------------- | ------ | ------------------------------------------------------ |
+| `showAddMenu()`         | `void` | Open native PaperKit add menu (shapes, text, stickers) |
+| `setTouchMode(mode)`    | `void` | Switch between `"drawing"` and `"selection"`           |
+| `setZoomRange(min, max)` | `void` | Set zoom limits (e.g. `0.5, 5`)                       |
 
 ---
 
@@ -266,39 +275,37 @@ import type {
 } from "expo-paperkit-ui";
 ```
 
-| Type | Values |
-|---|---|
-| `ShapeType` | `"rectangle"` \| `"roundedRectangle"` \| `"ellipse"` \| `"line"` \| `"arrowShape"` \| `"chatBubble"` \| `"regularPolygon"` \| `"star"` |
-| `TouchMode` | `"drawing"` \| `"selection"` |
-| `BackgroundPattern` | `"none"` \| `"lines"` \| `"grid"` \| `"dots"` |
+| Type                | Values                                                                                                               |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ShapeType`         | `"rectangle"` `"roundedRectangle"` `"ellipse"` `"line"` `"arrowShape"` `"chatBubble"` `"regularPolygon"` `"star"` |
+| `TouchMode`         | `"drawing"` or `"selection"`                                                                                         |
+| `BackgroundPattern` | `"none"` `"lines"` `"grid"` `"dots"`                                                                               |
 
 ---
 
 ## Limitations
 
-- **iOS 26+ only** — PaperKit is not available on earlier iOS versions or Android
-- **Requires a development build** — does not work with Expo Go
-- **Apple Pencil recommended** — finger drawing works but Apple Pencil provides the best experience with pressure sensitivity
-- **Background patterns** are drawn as a separate view layer; when active, PaperKit's internal views are made transparent
-- **Programmatic shape insertion** (`insertShape`, `insertTextbox`, etc.) adds elements to the data model; the canvas auto-switches to selection mode after insertion so elements are interactive
-- **Stickers** are accessible through the native tool picker's `+` button or `showAddMenu()`, not via a separate API
-- **`getCanvasDataAsBase64()`** uses a synchronous semaphore internally — avoid calling it repeatedly in tight loops
+- **iOS 26+ only** - PaperKit is not available on earlier iOS versions or Android.
+- **Requires a development build** - does not work with Expo Go.
+- **Apple Pencil recommended** - finger drawing works but Apple Pencil provides the best experience with pressure sensitivity.
+- **Background patterns** are drawn as a separate view layer; when active, PaperKit's internal views are made transparent.
+- **Programmatic shape insertion** (`insertShape`, `insertTextbox`, etc.) adds elements to the data model; the canvas auto-switches to selection mode after insertion so elements are interactive.
+- **Stickers** are accessible through the native tool picker's `+` button or `showAddMenu()`, not via a separate API.
+- **`getCanvasDataAsBase64()`** uses a synchronous semaphore internally - avoid calling it repeatedly in tight loops.
 
 ---
 
 ## Requirements
 
-| Requirement | Version |
-|---|---|
-| iOS | 26.0+ |
-| Expo | SDK 53+ |
-| React Native | 0.79+ |
-| Xcode | 26+ |
+| Requirement  | Version |
+| ------------ | ------- |
+| iOS          | 26.0+   |
+| Expo         | SDK 53+ |
+| React Native | 0.79+   |
+| Xcode        | 26+     |
 
 ---
 
 ## License
 
 MIT
-#   e x p o - p a p e r k i t - u i  
- 
