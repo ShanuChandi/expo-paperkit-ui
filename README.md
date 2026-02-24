@@ -283,15 +283,37 @@ import type {
 
 ---
 
-## Limitations
+## Known Issues
 
-- **iOS 26+ only** - PaperKit is not available on earlier iOS versions or Android.
-- **Requires a development build** - does not work with Expo Go.
-- **Apple Pencil recommended** - finger drawing works but Apple Pencil provides the best experience with pressure sensitivity.
-- **Background patterns** are drawn as a separate view layer; when active, PaperKit's internal views are made transparent.
-- **Programmatic shape insertion** (`insertShape`, `insertTextbox`, etc.) adds elements to the data model; the canvas auto-switches to selection mode after insertion so elements are interactive.
-- **Stickers** are accessible through the native tool picker's `+` button or `showAddMenu()`, not via a separate API.
-- **`getCanvasDataAsBase64()`** uses a synchronous semaphore internally - avoid calling it repeatedly in tight loops.
+This package is in active development. The following features need improvement:
+
+- **Background patterns (grid, lines, dots) do not work reliably.** The overlay pattern may not display correctly or may disappear after interactions. This is due to PaperKit internally rebuilding its view hierarchy, which conflicts with the transparent overlay approach.
+- **Canvas background color change does not work properly.** Setting the canvas background color may not apply to all internal PaperKit views consistently, or may be overridden by PaperKit's own rendering.
+
+These are known limitations of working with PaperKit's internal (private) view hierarchy. Contributions to solve these issues are very welcome.
+
+---
+
+## Contributing
+
+This is an open-source project and contributions are welcome! PaperKit is a brand-new framework from Apple (iOS 26+), so there is very little community knowledge available yet. If you have experience with PaperKit, PencilKit, or Expo native modules, your help would be greatly appreciated.
+
+**Areas where help is needed:**
+
+- Fixing the background pattern overlay (grid, lines, dots)
+- Making canvas background color changes reliable
+- Adding new PaperKit features as Apple expands the framework
+- Testing on different iPad models and Apple Pencil generations
+- Documentation improvements
+
+**How to contribute:**
+
+1. Fork the repository: [github.com/ShanuChandi/expo-paperkit-ui](https://github.com/ShanuChandi/expo-paperkit-ui)
+2. Create a feature branch: `git checkout -b feature/my-fix`
+3. Make your changes and test on a real device (PaperKit requires iOS 26+)
+4. Submit a pull request
+
+Feel free to open an issue to discuss ideas or report bugs.
 
 ---
 

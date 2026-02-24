@@ -17,8 +17,16 @@
     "expo-paperkit-ui",
     "apple-paperkit"
   ],
-  "author": "",
+  "author": "ShanuChandi",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShanuChandi/expo-paperkit-ui.git"
+  },
+  "homepage": "https://github.com/ShanuChandi/expo-paperkit-ui#readme",
+  "bugs": {
+    "url": "https://github.com/ShanuChandi/expo-paperkit-ui/issues"
+  },
   "files": [
     "src",
     "ios",
